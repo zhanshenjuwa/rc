@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +17,9 @@ public class TaskUtil {
     @Autowired
     private DocumentsService documentsService;
 
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0 0 1 1 * ?")
     public void syhkje() {
-        List<Integer> ids = new ArrayList<>();
-        ids.add(22214);
+        List<Integer> ids = documentsService.getDocmentsIds();
         for (Integer id : ids) {
             DocuVo dVo = documentsService.getDocmentsById(id);
             if (dVo.getKsDate().getTime() <= new Date().getTime()) {
