@@ -289,7 +289,9 @@ public class DocumentsService {
             monthCapital = invest.multiply(new BigDecimal(monthRate * (Math.pow((1 + monthRate),
                     i - 1)))).divide(new BigDecimal(Math.pow(1 + monthRate, month) - 1), 2,
                     BigDecimal.ROUND_HALF_UP);
-            documentsService.updateDocumentsSyhkje(id, documentsService.getDocmentsById(id).getSyhkje().subtract(monthCapital));
+            if (documentsService.getDocmentsById(id).getSyhkje().doubleValue() > 0) {
+                documentsService.updateDocumentsSyhkje(id, documentsService.getDocmentsById(id).getSyhkje().subtract(monthCapital));
+            }
         }
     }
 

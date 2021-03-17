@@ -86,7 +86,7 @@ public class DocumentsDao {
     }
 
     public void updateDocuments(DocumentsMsgRequestDto documentsMsgRequestDto) {
-        String sql = " UPDATE `documents` SET  `num`=?, `dc_id`=?, `bank_id`=?, `loan_amount`=?, `duration`=?, `address`=?, `property_certificate`=?, `house_cost`=?, `area`=?, `village_id`=?, `building`=?, `unit`=?, `house`=?,`certificates_status`=?,`different`=?,`bank_num`=? WHERE `id`=?";
+        String sql = " UPDATE `documents` SET  `num`=?, `dc_id`=?, `bank_id`=?, `loan_amount`=?, `duration`=?, `address`=?, `property_certificate`=?, `house_cost`=?, `area`=?, `village_id`=?, `building`=?, `unit`=?, `house`=?,`certificates_status`=?,`different`=?,`bank_num`=?,`syhkje`=? WHERE `id`=?";
         ArrayList<Object> params = new ArrayList<Object>();
         params.add(documentsMsgRequestDto.getNum());
         params.add(documentsMsgRequestDto.getDcId());
@@ -104,6 +104,7 @@ public class DocumentsDao {
         params.add(documentsMsgRequestDto.getCertificatesStatus());
         params.add(documentsMsgRequestDto.getDifferent());
         params.add(documentsMsgRequestDto.getBankNum());
+        params.add(documentsMsgRequestDto.getLoanAmount());
         params.add(documentsMsgRequestDto.getId());
         jdbcTemplate.update(sql, params.toArray());
     }
