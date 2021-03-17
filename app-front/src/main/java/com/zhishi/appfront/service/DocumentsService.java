@@ -7,6 +7,8 @@ import com.zhishi.appfront.entity.dto.response.DocumentsResponseDto;
 import com.zhishi.appfront.entity.vo.*;
 import com.zhishi.appfront.util.ConstantUtil;
 import com.zhishi.appfront.util.DateUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,9 +21,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class DocumentsService {
+
+    private static final Logger logger = LoggerFactory.getLogger(DocumentsService.class);
+
     @Autowired
     private DocumentsDao documentsDao;
 
@@ -313,6 +319,7 @@ public class DocumentsService {
     public void ssj() {
         List<Integer> list = documentsDao.getDocumentsIdss();
         for (Integer id : list) {
+            logger.info(id + "");
             getSyhkje(id);
         }
     }

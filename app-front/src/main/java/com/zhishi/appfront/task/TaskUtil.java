@@ -3,6 +3,8 @@ package com.zhishi.appfront.task;
 import com.zhishi.appfront.entity.vo.DocuVo;
 import com.zhishi.appfront.service.DocumentsService;
 import com.zhishi.appfront.util.DateUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -14,6 +16,8 @@ import java.util.List;
 @Component
 public class TaskUtil {
 
+    private static final Logger logger = LoggerFactory.getLogger(TaskUtil.class);
+
     @Autowired
     private DocumentsService documentsService;
 
@@ -21,6 +25,7 @@ public class TaskUtil {
     public void syhkje() {
         List<Integer> ids = documentsService.getDocmentsIds();
         for (Integer id : ids) {
+            logger.info(id + "");
             DocuVo dVo = documentsService.getDocmentsById(id);
             if (dVo.getKsDate().getTime() <= new Date().getTime()) {
                 BigDecimal invest = dVo.getLoanAmount(); // 本金
